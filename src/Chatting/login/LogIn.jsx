@@ -79,6 +79,7 @@ function LogIn() {
 
     const handleRefresh = () => {
         navigate(0); // 0을 넣으면 URL를 새로고침을 할 수 있다.
+        // window.location.reload(); // 페이지 자체를 새로고침 한다.
     }
 
     return (
