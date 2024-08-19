@@ -90,8 +90,8 @@ function LogIn() {
             <button className='btn'>로그인</button>
             <UlStyle>
                 <li onClick={() => navigate('SignUp')}>회원가입</li>
-                <li>아이디 찾기</li>
-                <li>비밀번호 찾기</li>
+                <li onClick={() => navigate('ID')}>아이디 찾기</li>
+                <li onClick={() => navigate('PASSWORD')}>비밀번호 찾기</li>
             </UlStyle>
         </Signup>
     );
