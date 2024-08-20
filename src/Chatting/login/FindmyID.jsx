@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Container = styled.form`
+const Container = styled.div`
     position: absolute;
     width: 35rem;
     height: 100%;
@@ -168,6 +168,11 @@ function FindmyID() {
 
     const[memberInformationphone, setMemberInformationPhone] = useState(true); // 휴대전화 인증
     const[memberInformationemail, setMemberInformationEmail] = useState(false); // 이메일 인증
+    const[authenticationcode_1, setAuthenticationcode_1] = useState(false); //인증번호
+    const[authenticationcode_2, setAuthenticationcode_2] = useState(false); //인증번호
+    const[name, setName] = useState('');
+    const[phone, setPhone] = useState('');
+    const[email, setEmail] = useState('');
 
     const handleInformationphone = () => {
         setMemberInformationPhone(true);
@@ -179,12 +184,33 @@ function FindmyID() {
         setMemberInformationEmail(true);
     };
 
+    const handleauthenticationcode_1 = () => {
+        if (phone.trim() === '') {
+            alert('휴대전화 번호를 입력하세요.');
+        } else {
+            setAuthenticationcode_1(true);
+        }
+    };
+
+    const handleauthenticationcode_2 = () => {
+        if (email.trim() === '') {
+            alert('이메일을 입력해주세요');
+        } else {
+            setAuthenticationcode_2(true);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
+
     return (
         <Container>
             <p 
-            className='chat'
-            onClick={() => navigate('/')}>Chatting</p>
-            <Id_form>
+                className='chat'
+                onClick={() => navigate('/')}
+            >Chatting</p>
+            <Id_form onSubmit={handleSubmit}>
                 <div className='id_pw'>
                     <div className='id'>아이디 찾기</div>
                     <div className='pw'>비밀번호 찾기</div>
@@ -194,13 +220,13 @@ function FindmyID() {
                     <label className='MemberInformationPhone_1' for="1" onClick={() => handleInformationphone()}>회원정보에 등록한 휴대전화로 인증</label>
                     {memberInformationphone && <div className='name_phone_verificationnumber'>
                         <label className='name'>이름</label>
-                        <input type='text' className='input_name'/>
+                        <input type='text' className='input_name' value={name} onChange={(e) => setName(e.target.value)}/>
                         <br/>
                         <label className='phone'>휴대전화</label>
-                        <input type='text' className='input_phone'/>
-                        <button className='verification_number'>인증번호</button>
+                        <input type='text' className='input_phone' value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                        <button className='verification_number' onClick={() => handleauthenticationcode_1()}>인증번호</button>
                         <br />
-                        <input type="text" placeholder='인증번호 입력' className='verification'/>
+                        {authenticationcode_1 && <input type="text" placeholder='인증번호 입력' className='verification'/>}
                     </div>}
                 </div>
                 <div className='MemberInformationEmail'>
@@ -211,13 +237,13 @@ function FindmyID() {
                         <input type='text' className='input_name2'/>
                         <br/>
                         <label className='email'>이메일</label>
-                        <input type='text' className='input_email'/>
-                        <button className='verification_number2'>인증번호</button>
+                        <input type='email' className='input_email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <button className='verification_number2' onClick={() => handleauthenticationcode_2()}>인증번호</button>
                         <br />
-                        <input type="text" placeholder='인증번호 입력' className='verification2'/>
+                        {authenticationcode_2 && <input type="text" placeholder='인증번호 입력' className='verification2'/>}
                     </div>}
                 </div>
-                <ButtonStyle>다음</ButtonStyle>
+                <ButtonStyle type='submit'>다음</ButtonStyle>
             </Id_form>    
         </Container>
     );
