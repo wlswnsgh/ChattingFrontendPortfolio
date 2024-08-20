@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+// 아이디 클릭 시 아이디 찾기 UI들이 나오기
+// 다음 클릭 시 휴대폰 인증으로 했을 경우 휴대폰 인증으로 나오게 하고
+// 이메일 인증 시 이메일만 인증되게 해야됨
+
 const Container = styled.div`
     position: absolute;
     width: 35rem;
@@ -216,11 +220,11 @@ function FindmyID() {
                     <div className='pw'>비밀번호 찾기</div>
                 </div>
                 <div className='MemberInformationPhone'>
-                    <input type='radio' className='radio_1' id='1' name="myRadio" onClick={() => handleInformationphone()}/>
+                    <input type='radio' className='radio_1' id='1' name="myRadio" onClick={() => handleInformationphone()} checked={memberInformationphone} />
                     <label className='MemberInformationPhone_1' for="1" onClick={() => handleInformationphone()}>회원정보에 등록한 휴대전화로 인증</label>
                     {memberInformationphone && <div className='name_phone_verificationnumber'>
                         <label className='name'>이름</label>
-                        <input type='text' className='input_name' value={name} onChange={(e) => setName(e.target.value)}/>
+                        <input type='text' className='input_name' value={name} onChange={(e) => setName(e.target.value)} />
                         <br/>
                         <label className='phone'>휴대전화</label>
                         <input type='text' className='input_phone' value={phone} onChange={(e) => setPhone(e.target.value)}/>
@@ -230,7 +234,7 @@ function FindmyID() {
                     </div>}
                 </div>
                 <div className='MemberInformationEmail'>
-                    <input type='radio' className='radio_2' id='2' name="myRadio" onClick={() => handleInformationemail()}/>
+                    <input type='radio' className='radio_2' id='2' name="myRadio" onClick={() => handleInformationemail()} checked={memberInformationemail}/>
                     <label className='MemberInformationPhone_2' for="2" onClick={() => handleInformationemail()}>본인확인 이메일로 인증</label>
                     {memberInformationemail && <div className='name_phone_verificationnumber2'>
                         <label className='name2'>이름</label>
