@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-// 아이디 클릭 시 아이디 찾기 UI들이 나오기
-// 다음 클릭 시 휴대폰 인증으로 했을 경우 휴대폰 인증으로 나오게 하고
-// 이메일 인증 시 이메일만 인증되게 해야됨
-
 const Container = styled.div`
     position: absolute;
     width: 35rem;
@@ -206,6 +202,18 @@ function FindmyID() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (memberInformationphone && phone.trim() === '') {
+            alert('휴대전화 번호를 입력하세요.');
+        } else if (memberInformationemail && email.trim() === '') {
+            alert('이메일을 입력해주세요');
+        } else {
+            if (memberInformationphone) {
+                console.log('휴대전화 인증으로 진행합니다.');
+            } else if (memberInformationemail) {
+                console.log('이메일 인증으로 진행합니다.');
+            }
+        }
     };
 
     return (
