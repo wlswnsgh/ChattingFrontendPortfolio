@@ -166,18 +166,17 @@ const ButtonStyle = styled.button`
 function FindmyID() {
     const navigate = useNavigate();
 
-    const[memberInformationphone, setMemberInformationPhone] = useState(true); // 휴대전화 인증
-    const[memberInformationemail, setMemberInformationEmail] = useState(false); // 이메일 인증
-    const[authenticationcode_1, setAuthenticationcode_1] = useState(false); //인증번호
-    const[authenticationcode_2, setAuthenticationcode_2] = useState(false); //인증번호
+    const [memberInformationphone, setMemberInformationPhone] = useState(true); // 휴대전화 인증
+    const [memberInformationemail, setMemberInformationEmail] = useState(false); // 이메일 인증
+    const [authenticationcode_1, setAuthenticationcode_1] = useState(false); //인증번호
+    const [authenticationcode_2, setAuthenticationcode_2] = useState(false); //인증번호
     
-    const[name_1, setName_1] = useState('');
-    const[name_2, setName_2] = useState('');
-    const[phone, setPhone] = useState('');
-    const[email, setEmail] = useState('');
-    const[verificationcode_1, setVerificationCode_1] = useState('');
-    const[verificationcode_2, setVerificationCode_2] = useState('');
-
+    const [name_1, setName_1] = useState('');
+    const [name_2, setName_2] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [verificationcode_1, setVerificationCode_1] = useState('');
+    const [verificationcode_2, setVerificationCode_2] = useState('');
 
     const handleInformationphone = () => {
         setMemberInformationPhone(true);
@@ -238,7 +237,7 @@ function FindmyID() {
             <Id_form onSubmit={handleSubmit}>
                 <div className='id_pw'>
                     <div className='id'>아이디 찾기</div>
-                    <div className='pw'>비밀번호 찾기</div>
+                    <div className='pw' onClick={() => navigate('/PASSWORD')}>비밀번호 찾기</div>
                 </div>
                 <div className='MemberInformationPhone'>
                     <input type='radio' className='radio_1' id='1' name="myRadio" onClick={() => handleInformationphone()} checked={memberInformationphone} />

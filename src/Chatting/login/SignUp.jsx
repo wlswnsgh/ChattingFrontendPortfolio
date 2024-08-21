@@ -424,7 +424,8 @@ function SignUp() {
                 AuthorizationCodeApproval: true
             }));
             } else {
-            navigate('/Main');   
+            alert("회원가입이 완료되었습니다.");
+            navigate('/');   
             console.log('닉네임:', nickname);
             console.log('아이디:', id);
             console.log('비밀번호:', password);

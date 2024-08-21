@@ -1,5 +1,5 @@
 // 로그인 페이지
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -77,17 +77,32 @@ li:first-child:before {
 function LogIn() {
     const navigate = useNavigate();
 
+    const [id, setId] = useState('');
+    const [pw, setPw] = useState('');
+
     const handleRefresh = () => {
         navigate(0); // 0을 넣으면 URL를 새로고침을 할 수 있다.
         // window.location.reload(); // 페이지 자체를 새로고침 한다.
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (id.trim() === '') {
+            alert("아이디를 입력해주세요.");
+        } else if (pw.trim() === '') {
+            alert("비밀번호를 입력해주세요.");
+        } else {
+            navigate("/Main");  
+        }
+    };
+
     return (
-        <Signup>
+        <Signup onSubmit={handleSubmit}>
             <p className='chat' onClick={() => handleRefresh()}>Chatting</p>
-            <input type='text' className='id' placeholder='아이디' />
-            <input type='password' className='pwd' placeholder='비밀번호'/>
-            <button className='btn'>로그인</button>
+            <input type='text' className='id' placeholder='아이디' value={id} onChange={(e) => setId(e.target.value)}/>
+            <input type='password' className='pwd' placeholder='비밀번호' value={pw} onChange={(e) => setPw(e.target.value)}/>
+            <button type='submit' className='btn'>로그인</button>
             <UlStyle>
                 <li onClick={() => navigate('SignUp')}>회원가입</li>
                 <li onClick={() => navigate('ID')}>아이디 찾기</li>
