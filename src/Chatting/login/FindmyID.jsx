@@ -170,9 +170,14 @@ function FindmyID() {
     const[memberInformationemail, setMemberInformationEmail] = useState(false); // 이메일 인증
     const[authenticationcode_1, setAuthenticationcode_1] = useState(false); //인증번호
     const[authenticationcode_2, setAuthenticationcode_2] = useState(false); //인증번호
-    const[name, setName] = useState('');
+    
+    const[name_1, setName_1] = useState('');
+    const[name_2, setName_2] = useState('');
     const[phone, setPhone] = useState('');
     const[email, setEmail] = useState('');
+    const[verificationcode_1, setVerificationCode_1] = useState('');
+    const[verificationcode_2, setVerificationCode_2] = useState('');
+
 
     const handleInformationphone = () => {
         setMemberInformationPhone(true);
@@ -198,15 +203,23 @@ function FindmyID() {
         } else {
             setAuthenticationcode_2(true);
         }
-    };
+    };                                                     
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (memberInformationphone && phone.trim() === '') {
             alert('휴대전화 번호를 입력하세요.');
+        } else if (memberInformationphone && name_1.trim() === '') {
+            alert('이름을 입력하세요.');
+        } else if (memberInformationphone && authenticationcode_1 && verificationcode_1.trim() === '') {
+            alert('인증번호를 입력해주세요');   
         } else if (memberInformationemail && email.trim() === '') {
             alert('이메일을 입력해주세요');
+        } else if (memberInformationemail && name_2.trim() === '') {
+            alert('이름을 입력하세요.');
+        } else if (memberInformationemail && authenticationcode_2 && verificationcode_2.trim() === '') {
+            alert('인증번호를 입력해주세요');
         } else {
             if (memberInformationphone) {
                 console.log('휴대전화 인증으로 진행합니다.');
@@ -232,13 +245,13 @@ function FindmyID() {
                     <label className='MemberInformationPhone_1' for="1" onClick={() => handleInformationphone()}>회원정보에 등록한 휴대전화로 인증</label>
                     {memberInformationphone && <div className='name_phone_verificationnumber'>
                         <label className='name'>이름</label>
-                        <input type='text' className='input_name' value={name} onChange={(e) => setName(e.target.value)} />
+                        <input type='text' className='input_name' value={name_1} onChange={(e) => setName_1(e.target.value)} />
                         <br/>
                         <label className='phone'>휴대전화</label>
                         <input type='text' className='input_phone' value={phone} onChange={(e) => setPhone(e.target.value)}/>
-                        <button className='verification_number' onClick={() => handleauthenticationcode_1()}>인증번호</button>
+                        <button type = 'button' className='verification_number' onClick={() => handleauthenticationcode_1()}>인증번호</button>
                         <br />
-                        {authenticationcode_1 && <input type="text" placeholder='인증번호 입력' className='verification'/>}
+                        {authenticationcode_1 && <input type="text" placeholder='인증번호 입력' className='verification' value={verificationcode_1} onChange={(e) => setVerificationCode_1(e.target.value)}/>}
                     </div>}
                 </div>
                 <div className='MemberInformationEmail'>
@@ -246,13 +259,13 @@ function FindmyID() {
                     <label className='MemberInformationPhone_2' for="2" onClick={() => handleInformationemail()}>본인확인 이메일로 인증</label>
                     {memberInformationemail && <div className='name_phone_verificationnumber2'>
                         <label className='name2'>이름</label>
-                        <input type='text' className='input_name2'/>
+                        <input type='text' className='input_name2' value={name_2} onChange={(e) => setName_2(e.target.value)}/>
                         <br/>
                         <label className='email'>이메일</label>
                         <input type='email' className='input_email' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                        <button className='verification_number2' onClick={() => handleauthenticationcode_2()}>인증번호</button>
+                        <button type = 'button' className='verification_number2' onClick={() => handleauthenticationcode_2()}>인증번호</button>
                         <br />
-                        {authenticationcode_2 && <input type="text" placeholder='인증번호 입력' className='verification2'/>}
+                        {authenticationcode_2 && <input type="text" placeholder='인증번호 입력' className='verification2' value={verificationcode_2} onChange={(e) => setVerificationCode_2(e.target.value)}/>}
                     </div>}
                 </div>
                 <ButtonStyle type='submit'>다음</ButtonStyle>
