@@ -423,7 +423,7 @@ function SignUp() {
                 ...prev,
                 AuthorizationCodeApproval: true
             }));
-            } else {
+        } else {
             alert("회원가입이 완료되었습니다.");
             navigate('/');   
             console.log('닉네임:', nickname);

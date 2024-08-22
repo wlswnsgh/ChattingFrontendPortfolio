@@ -247,8 +247,10 @@ function Findmyfassword() {
       } else {
         if (memberInformationphone) {
           console.log('휴대전화번호로 인증받았습니다.');
+          navigate('/Pwd');
         } else if (memberInformationemail) {
           console.log('이메일로 인증받았습니다.');
+          navigate('/Pwd');
         }
       }
     };

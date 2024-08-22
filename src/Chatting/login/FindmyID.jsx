@@ -32,7 +32,7 @@ const Id_form = styled.form`
     transform: translate(-50%, -50%);
     border-radius: 4%;
     border: 1.7px solid #e1e3e5; // 1px solid #e1e3e5
-
+    
 .id_pw { 
     display: flex;
     justify-content: center;
@@ -43,7 +43,7 @@ const Id_form = styled.form`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5f6f7;
+    background-color: #f5f6f7; // 이 부분
     border-radius: 15px 0 0 0; // 15px 5px 5px 5px
     width: 50%;
     height: 50px;
