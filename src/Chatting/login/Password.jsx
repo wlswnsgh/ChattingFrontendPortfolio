@@ -82,7 +82,17 @@ function Password() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/')
+
+        if (!pawd_1 || !pawd_2 || !submitpwd) {
+            alert('모든 필드를 입력해 주세요.');
+        } else if (pawd_1 !== pawd_2) {
+            alert('새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다.');
+        } else if (submitpwd.trim() === '') {
+            alert('자동 입력 방지 문자를 입력해 주세요.');
+        } else {
+            alert('비밀번호가 성공적으로 변경되었습니다.');
+            navigate('/');
+        }
     };
 
     return (
@@ -101,7 +111,7 @@ function Password() {
                     <p className='automatic'>자동입력 방지</p>
                     <p className='automaticImg'>아래에 보이는 이미지 대로 입력하세요.</p>
                     {/* 백엔드로 이미지 받아오기 */}
-                    <Pw_input type='text' value={submitpwd} onChange={(e) => setSubmitpwd(e.target.value)} />
+                    <Pw_input type='text' placeholder='자동입력 방지 문자' value={submitpwd} onChange={(e) => setSubmitpwd(e.target.value)} />
                 </Form_div>
 
                 <ButtonStyle type='submit'>확인</ButtonStyle>
